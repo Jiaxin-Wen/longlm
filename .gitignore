@@ -1,0 +1,10 @@
+# data
+data/
+esc/
+
+# model
+LongLM-large
+LongLM-small
+
+*.zip
+**/__pycache__
