@@ -14,5 +14,5 @@ python code/gen.py \
     --output_path $OUTPUT_PATH \
     --enc_seq_length 128 \
     --dec_seq_length 128 \
-    --batch_size 64 \
+    --batch_size 128 \
     --device 0

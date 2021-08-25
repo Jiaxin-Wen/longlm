@@ -1,4 +1,5 @@
-SIZE=small
+# SIZE=small
+SIZE=large
 DATA_PATH=esc
 # DATA_PATH=data
 SAVE_DIR=test_${SIZE}_${DATA_PATH}
