@@ -6,5 +6,8 @@ esc/
 LongLM-large
 LongLM-small
 
+# checkpoint
+results
+
 *.zip
 **/__pycache__
