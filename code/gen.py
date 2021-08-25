@@ -87,6 +87,7 @@ def generate(args):
                 for output in gen:
                     f.write(output)
                     f.write('\n')
+                f.flush()
             
             
 

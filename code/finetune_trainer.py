@@ -310,7 +310,9 @@ def main():
         assert_all_frozen(model.get_encoder())
 
     dataset_class = Seq2SeqDataset
-
+    print('data_args = ', data_args)
+    print('max target len = ', data_args.max_target_length)
+    print('max source len = ', data_args.max_source_length)
     # Get datasets
     train_dataset = (
         dataset_class(
