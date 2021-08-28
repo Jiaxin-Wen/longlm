@@ -4,11 +4,11 @@ WORKING_DIR=/dataset/f1d6ea5b/wenjiaxin/lot
 CKPT_PATH=lot_large_esc_deepspeed_datafix/checkpoint-100
 LOAD_PATH=${WORKING_DIR}/results/$CKPT_PATH
 
-INPUT_PATH=${WORKING_DIR}/esc/test.source
-OUTPUT_PATH=${LOAD_PATH}/generate.txt
+INPUT_PATH=${WORKING_DIR}/esc/test
+OUTPUT_PATH=${LOAD_PATH}/infer_result/
 
 
-python code/gen.py \
+python code/infer.py \
     --load_path $LOAD_PATH \
     --input_path $INPUT_PATH \
     --output_path $OUTPUT_PATH \
