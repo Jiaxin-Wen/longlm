@@ -1,7 +1,7 @@
 WORKING_DIR=/dataset/f1d6ea5b/wenjiaxin/lot
 
 
-CKPT_PATH=test_small_esc/checkpoint-62
+CKPT_PATH=lot_large_esc_deepspeed_datafix/checkpoint-100
 LOAD_PATH=${WORKING_DIR}/results/$CKPT_PATH
 
 INPUT_PATH=${WORKING_DIR}/esc/test.source
@@ -14,5 +14,5 @@ python code/gen.py \
     --output_path $OUTPUT_PATH \
     --enc_seq_length 128 \
     --dec_seq_length 128 \
-    --batch_size 128 \
+    --batch_size 32 \
     --device 0

@@ -8,6 +8,7 @@ LongLM-small
 
 # checkpoint
 results
+runs/
 
 *.zip
 **/__pycache__

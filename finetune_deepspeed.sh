@@ -2,7 +2,7 @@
 SIZE=large
 DATA_PATH=esc
 # DATA_PATH=data
-SAVE_DIR=lot_${SIZE}_${DATA_PATH}_deepspeed
+SAVE_DIR=lot_${SIZE}_${DATA_PATH}_deepspeed_datafix/
 
 NUM_WORKERS=1
 NUM_GPUS_PER_WORKER=8
@@ -21,8 +21,8 @@ export NCCL_DEBUG=INFO
     --test_max_target_length 128 \
     --output_dir=results/$SAVE_DIR \
     --save_total_limit=10 \
-    --per_device_train_batch_size=3 \
-    --per_device_eval_batch_size=3 \
+    --per_device_train_batch_size=32 \
+    --per_device_eval_batch_size=32 \
     --num_train_epochs=1 \
     --logging_steps=5 \
     --model_name_or_path=LongLM-$SIZE \
@@ -33,5 +33,5 @@ export NCCL_DEBUG=INFO
     --do_train --do_eval \
     --overwrite_output_dir \
     --load_best_model_at_end \
-    --gradient_accumulation_steps 40 \
+    --gradient_accumulation_steps 1 \
     --deepspeed config/deepspeed/ds_zero2_config_st.json
