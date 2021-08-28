@@ -7,6 +7,7 @@ from unicodedata import category
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 import torch
 
+from myMetrics import Metric
 
 
 def get_args():
@@ -72,13 +73,19 @@ def generate(args):
         input = [line.strip() for line in f.readlines()]
     print(f"loaded input data from : {args.input_path + '.source'}")
     with open(args.input_path + '.target', 'r', encoding='utf-8') as f:
-        target = [line.strip() for line in f.readlines()]
-    print(f"loaded input data from : {args.input_pat + '.target'}")
+        target = [line.strip().replace("<extra_id_1>", "") for line in f.readlines()]
+    print(f"loaded input data from : {args.input_path + '.target'}")
+    print('input = ', input[0])
+    print('target = ', target[0])
 
 
     print(f'start generate to : {args.output_path}')
     if not os.path.exists(args.output_path):
         os.mkdir(args.output_path)
+
+    # input = input[:100]
+    # target = target[:100]
+
 
     start, end = 0, 0
     generate = []
@@ -101,8 +108,12 @@ def generate(args):
 
 
     # TODO: cal metric
+    metric = Metric(tokenizer)
+    for gen_sen, target_sen in zip(generate, target):
+        metric.forstr([gen_sen], target_sen)
+    metric_res, *_ = metric.close()
     with open(args.output_path + 'metric.json', 'w', encoding='utf-8') as f:
-        pass
+        json.dump(metric_res, f, ensure_ascii=False, indent=2)
     
 
 if __name__ == "__main__":
