@@ -1,6 +1,7 @@
 # data
 data/
 esc/
+esc_manual/
 
 # model
 LongLM-large

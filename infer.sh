@@ -1,7 +1,7 @@
 WORKING_DIR=/dataset/f1d6ea5b/wenjiaxin/lot
 
 
-CKPT_PATH=lot_large_esc_deepspeed_datafix/checkpoint-100
+CKPT_PATH=lot_large_esc_0828_data/checkpoint-5900
 LOAD_PATH=${WORKING_DIR}/results/$CKPT_PATH
 
 INPUT_PATH=${WORKING_DIR}/esc/test
