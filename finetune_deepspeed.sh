@@ -1,12 +1,12 @@
-DATA_PATH=eva_data_$1 # TODO:
+DATA_PATH=$DATA
 # DATA_PATH=data
 LOAD_PATH=/dataset/f1d6ea5b/wenjiaxin/lot/results/lot_large_esc_0828_data/checkpoint-5900
-SAVE_DIR=lot_large_eva_$1/
+SAVE_DIR=lot_large_$DATA/
 
-NUM_WORKERS=1
+NUM_WORKERS=2
 NUM_GPUS_PER_WORKER=8
-HOST=m0
-HOST_FILE=config/hostfile/hostfile-$1
+# HOST=m0
+HOST_FILE=config/hostfile/hostfile-$HOST
 
 OPTS=""
 OPTS+="--data_dir $DATA_PATH"
@@ -16,22 +16,23 @@ OPTS+=" --max_source_length 128"
 OPTS+=" --val_max_target_length 128"
 OPTS+=" --test_max_target_length 128"
 OPTS+=" --output_dir results/${SAVE_DIR}"
-OPTS+=" --save_total_limit 10"
-OPTS+=" --per_device_train_batch_size 4"
+OPTS+=" --save_total_limit 100"
+OPTS+=" --per_device_train_batch_size 32"
 # OPTS+=" --per_device eval_batch size 4"
-OPTS+=" --num_train_epochs 2"
+OPTS+=" --num_train_epochs 10"
 OPTS+=" --logging_steps 5"
 OPTS+=" --model_name_or_path $LOAD_PATH"
 OPTS+=" --learning_rate 1e-4"
 OPTS+=" --n_val 1000"
-# OPTS+=" --evaluation_strategy steps"
-OPTS+="  --evaluation_strategy no"
-OPTS+=" --eval_steps 100"
+OPTS+=" --evaluation_strategy steps"
+# OPTS+="  --evaluation_strategy no"
+OPTS+=" --eval_steps 2500"
 OPTS+=" --do_train"
-# OPTS+=" --do_eval"
+OPTS+=" --do_eval"
 # OPTS+=" --overwrite_output_dir"
 OPTS+=" --load_best_model_at_end"
 OPTS+=" --gradient_accumulation_steps 1"
+# OPTS+=" --deepspeed-activation-checkpointing"
 OPTS+=" --deepspeed config/deepspeed/ds_zero2_config_st.json"
 
 
