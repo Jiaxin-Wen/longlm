@@ -1,12 +1,12 @@
-DATA_PATH=esc_manual
+DATA_PATH=eva_data_$1 # TODO:
 # DATA_PATH=data
 LOAD_PATH=/dataset/f1d6ea5b/wenjiaxin/lot/results/lot_large_esc_0828_data/checkpoint-5900
-SAVE_DIR=lot_large_manual0831/
+SAVE_DIR=lot_large_eva_$1/
 
 NUM_WORKERS=1
 NUM_GPUS_PER_WORKER=8
 HOST=m0
-HOST_FILE=config/hostfile/hostfile-$HOST
+HOST_FILE=config/hostfile/hostfile-$1
 
 OPTS=""
 OPTS+="--data_dir $DATA_PATH"
