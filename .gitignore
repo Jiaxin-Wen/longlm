@@ -13,6 +13,7 @@ LongLM-small
 # checkpoint
 results
 runs/
+checkpoints-gyx
 
 *.zip
 **/__pycache__

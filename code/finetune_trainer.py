@@ -441,4 +441,5 @@ def _mp_fn(index):
 
 
 if __name__ == "__main__":
+    print("finetune_trainer.py", os.environ["PATH"])
     main()

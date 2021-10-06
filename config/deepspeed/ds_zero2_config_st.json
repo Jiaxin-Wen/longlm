@@ -2,6 +2,8 @@
   "zero_optimization": {
     "stage": 1
   },
+  "gradient_accumulation_steps": "auto",
+  "train_batch_size": "auto",
   "zero_allow_untested_optimizer": true,
   "fp16": {
     "enabled": true,

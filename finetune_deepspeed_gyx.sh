@@ -1,9 +1,13 @@
+DATA=$1
+HOST=$2
+
 DATA_PATH=$DATA
 # DATA_PATH=data
-LOAD_PATH=/dataset/f1d6ea5b/wenjiaxin/lot/LongLM-large
-SAVE_DIR=1006_lot_large_$DATA/
+#LOAD_PATH=/dataset/f1d6ea5b/wenjiaxin/lot/results/lot_large_esc_0828_data/checkpoint-5900
+LOAD_PATH=/dataset/f1d6ea5b/wenjiaxin/lot/checkpoints-gyx/checkpoint-5900/
+SAVE_DIR=lot_large_$DATA/
 
-NUM_WORKERS=2
+NUM_WORKERS=${3-2}
 NUM_GPUS_PER_WORKER=8
 # HOST=m0
 HOST_FILE=config/hostfile/hostfile-$HOST
@@ -37,7 +41,7 @@ OPTS+=" --deepspeed config/deepspeed/ds_zero2_config_st.json"
 
 
 export NCCL_DEBUG=INFO
-CMD="/dataset/f1d6ea5b/wenjiaxin/env_lot/bin/deepspeed --num_nodes ${NUM_WORKERS} --num_gpus ${NUM_GPUS_PER_WORKER} --master_port 4586 --hostfile ${HOST_FILE} code/finetune_trainer.py $@ $OPTS"
+CMD="/dataset/f1d6ea5b/wenjiaxin/env_lot/bin/deepspeed --num_nodes ${NUM_WORKERS} --num_gpus ${NUM_GPUS_PER_WORKER} --master_port 4586 --hostfile ${HOST_FILE} code/finetune_trainer.py $OPTS"
 echo ${CMD}
 ${CMD}
     # --data_dir=$DATA_PATH \
